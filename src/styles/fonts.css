@@ -1,0 +1,18 @@
+/** Fonts **/
+
+/* Work Sans Variable Font */
+@font-face {
+	font-family: "Work Sans";
+	src: url("/fonts/WorkSans-VariableFont_weight.ttf") format("truetype");
+	font-weight: 400, 600, 700;
+	font-style: normal;
+}
+
+/* Work Sans Italic Variable Font */
+@font-face {
+	font-family: "Work Sans";
+	src: url("/fonts/WorkSans-Italic-VariableFont_weight.ttf")
+		format("truetype");
+	font-weight: 400, 600, 700;
+	font-style: italic;
+}
