@@ -13,15 +13,6 @@ export default class App {
         // Prevent multiple renders
         if (this.isRendered) return;
 
-        // Get the app container
-        const app = document.getElementById('app');
-
-        // Check if app exists before manipulating
-        if (app) {
-            // Set some content
-            app.textContent = 'FAQ Accordion Application';
-        }
-
         // Set the flag to true after rendering
         this.isRendered = true;
     }

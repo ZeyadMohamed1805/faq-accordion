@@ -14,3 +14,19 @@ html {
 	font-size: var(--font-size);
 	line-height: 150%;
 }
+
+/* Body Reset - Mobile */
+body {
+	background: 
+		url("/images/background-pattern-mobile.svg") no-repeat top center,
+		var(--secondary-color);
+}
+
+/* Body Reset - Desktop */
+@media (min-width: 23.4375rem) {
+	body {
+		background: 
+		url("/images/background-pattern-desktop.svg") no-repeat top center,
+		var(--secondary-color);
+	}
+}
