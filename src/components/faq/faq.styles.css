@@ -1,0 +1,34 @@
+/* FAQ Component Styles */
+
+/* FAQ Component */
+#faq 
+{
+    max-width: 39rem;
+    width: 100%;
+    background-color: var(--white-color);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+}
+
+/* FAQ Header */
+#faq header 
+{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* FAQ Heading */
+#faq h1
+{
+    color: var(--primary-color);
+    font-weight: var(--font-weight-bold);
+    font-size: 2.5rem;
+}
+
+/* FAQ Star Icon */
+#faq img
+{
+    width: 2rem;
+    height: 2rem;
+}

@@ -1,2 +1,2 @@
-/* Default Export */
+/* Exports */
 export { default } from './app.component';

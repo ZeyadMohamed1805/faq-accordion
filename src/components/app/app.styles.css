@@ -1,0 +1,10 @@
+/** App Component Styles */
+
+/* App Component - Mobile */
+#app {
+    min-height: 100vh;
+    background-color: var(--light-gray-color);
+    padding: 2rem;
+    display: grid;
+    place-items: center;
+}
