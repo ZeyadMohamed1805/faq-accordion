@@ -33,10 +33,11 @@ export default class App
         }
 
         // Initialize the app components
-        const faqComponent = new FAQComponent().render();
+        const faqComponent = new FAQComponent()
+        const faqElement = faqComponent.render();
 
         // Render the components
-        App._htmlElement!.appendChild(faqComponent);
+        App._htmlElement!.appendChild(faqElement);
 
         // Set the flag to true after rendering
         App.isRendered = true;

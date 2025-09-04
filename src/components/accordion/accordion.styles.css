@@ -1,0 +1,45 @@
+/** Accordion Component Styles **/
+
+/* Accordion */
+.accordion
+{
+    border-bottom: solid var(--accent-color) 0.0675rem;
+}
+
+/* Last Accordion In List */
+.accordion:last-child
+{
+    border-bottom: none;
+}
+
+/* Accordion Header */
+.accordion header
+{
+    display: flex;
+    align-items: center;
+    padding: 1.25rem 0;
+    gap: 2rem;
+}
+
+/* Accordion Heading */
+.accordion h2
+{
+    width: 100%;
+    font-size: 1.125rem;
+    font-weight: var(--font-weight-semibold);
+}
+
+/* Accordion Button */
+.accordion button
+{
+    background-color: var(--white-color);
+    border: none;
+    cursor: pointer;
+}
+
+/* Accordion Body */
+.accordion p 
+{
+    color: var(--secondary-color);
+    padding-bottom: 1.25rem;
+}

@@ -7,7 +7,10 @@
     width: 100%;
     background-color: var(--white-color);
     border-radius: 0.75rem;
-    padding: 1.5rem;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 /* FAQ Header */
@@ -15,7 +18,7 @@
 {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 /* FAQ Heading */
@@ -23,12 +26,5 @@
 {
     color: var(--primary-color);
     font-weight: var(--font-weight-bold);
-    font-size: 2.5rem;
-}
-
-/* FAQ Star Icon */
-#faq img
-{
-    width: 2rem;
-    height: 2rem;
+    font-size: 3rem;
 }
