@@ -19,7 +19,7 @@ html {
 body {
 	background: 
 		url("/images/background-pattern-mobile.svg") no-repeat top center,
-		var(--secondary-color);
+		var(--accent-two-color);
 }
 
 /* Body Reset - Desktop */
@@ -27,6 +27,15 @@ body {
 	body {
 		background: 
 		url("/images/background-pattern-desktop.svg") no-repeat top center,
-		var(--secondary-color);
+		var(--accent-two-color);
+	}
+}
+
+/* Body Reset - Large */
+@media (min-width: 90rem) {
+	body {
+		background: 
+		url("/images/background-pattern-desktop.svg") no-repeat top center / cover,
+		var(--accent-two-color);
 	}
 }
