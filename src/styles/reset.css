@@ -35,7 +35,7 @@ body {
 @media (min-width: 90rem) {
 	body {
 		background: 
-		url("/images/background-pattern-desktop.svg") no-repeat top center / cover,
+		url("/images/background-pattern-desktop.svg") no-repeat top center / contain,
 		var(--accent-two-color);
 	}
 }
