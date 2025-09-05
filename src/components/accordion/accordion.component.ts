@@ -41,7 +41,7 @@ export default class AccordionComponent
         this._bodyContent = props.bodyContent;
 
         // Initialize Button Icon Content
-        this._buttonIconSrc = "/images/icon-plus.svg";
+        this._buttonIconSrc = "images/icon-plus.svg";
         this._buttonIconAlt = "Plus Icon";
 
         // Initialize Accordion State
@@ -188,7 +188,7 @@ export default class AccordionComponent
             // Close The Accordion
             newAccordionBodyHeight = 0;
             newAccordionState = 'closed';
-            newButtonIconSrc = '/images/icon-plus.svg'
+            newButtonIconSrc = 'images/icon-plus.svg'
             newButtonIconAlt = 'Plus Icon';
         }
 
@@ -198,7 +198,7 @@ export default class AccordionComponent
             // Open The Accordion
             newAccordionBodyHeight = this._accordionBodyElement.scrollHeight;
             newAccordionState = 'open';
-            newButtonIconSrc = '/images/icon-minus.svg'
+            newButtonIconSrc = 'images/icon-minus.svg'
             newButtonIconAlt = 'Minus Icon';
         }
 

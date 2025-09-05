@@ -64,7 +64,7 @@ export default class FAQComponent
     // Initialize The Star Icon
     private _initStarIcon(): void
     {
-        this._starIconElement.src = '/images/icon-star.svg';
+        this._starIconElement.src = 'images/icon-star.svg';
         this._starIconElement.alt = 'Star Icon';
     }
 
