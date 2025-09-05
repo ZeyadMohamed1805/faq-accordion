@@ -3,7 +3,7 @@
 /* Accordion */
 .accordion
 {
-    border-bottom: solid var(--accent-color) 0.0675rem;
+    border-bottom: solid var(--accent-two-color) 0.0675rem;
     transition: padding-bottom 0.5s ease-in-out;
 }
 
@@ -23,6 +23,7 @@
 .accordion header
 {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 1.25rem 0;
     gap: 2rem;
@@ -31,9 +32,17 @@
 /* Accordion Heading */
 .accordion h2
 {
-    width: 100%;
+    width: fit-content;
     font-size: 1.125rem;
     font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: color 0.25s ease-in-out;
+}
+
+/* Accordion Heading - Hover State */
+.accordion h2:hover
+{
+    color: var(--accent-one-color);
 }
 
 /* Accordion Button */
@@ -42,6 +51,13 @@
     background-color: var(--white-color);
     border: none;
     cursor: pointer;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Open Accordion Button */
+.accordion[data-state='open'] button
+{
+    transform: rotate(-180deg);
 }
 
 /* Accordion Body */

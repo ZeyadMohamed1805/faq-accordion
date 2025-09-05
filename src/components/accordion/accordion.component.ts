@@ -19,7 +19,7 @@ export default class AccordionComponent
     // HTML Content
     private _headingTitle: string;
     private _bodyContent: string;
-    private _buttonIconPath: string;
+    private _buttonIconSrc: string;
     private _buttonIconAlt: string;
 
     // Accordion State
@@ -41,7 +41,7 @@ export default class AccordionComponent
         this._bodyContent = props.bodyContent;
 
         // Initialize Button Icon Content
-        this._buttonIconPath = "/images/icon-plus.svg";
+        this._buttonIconSrc = "/images/icon-plus.svg";
         this._buttonIconAlt = "Plus Icon";
 
         // Initialize Accordion State
@@ -86,13 +86,26 @@ export default class AccordionComponent
     {
         // Insert The Heading Title
         this._accordionHeadingElement.textContent = this._headingTitle
+
+        // Add Toggle Functionality
+        this._accordionHeadingElement.addEventListener(
+            'click',
+            () =>
+            {
+                // Close All Open Accordions
+                AccordionComponent._closeOtherOpenAccordions(this);
+
+                // Toggle The Accordion State
+                this._toggleAccordionState();
+            }
+        )
     }
 
     // Initialize The According Button Icon
     private _initAccordionButtonIcon()
     {
         // Initialize The Icon Content
-        this._accordionButtonIconElement.src = this._buttonIconPath;
+        this._accordionButtonIconElement.src = this._buttonIconSrc;
         this._accordionButtonIconElement.alt = this._buttonIconAlt;
     }
 
@@ -107,28 +120,8 @@ export default class AccordionComponent
             "click",
             () =>
             {
-                // Get All Other Accordions
-                const allOtherAccordions: Array<AccordionComponent> = AccordionComponent._allAccordions.filter(
-                    accordion =>
-                    {
-                        return this !== accordion;
-                    }
-                );
-                
-                // Check For Any Other Open Accordion
-                const openAccordion: AccordionComponent | undefined = allOtherAccordions.find(
-                    accordion =>
-                    {
-                        return accordion._accordionState === 'open';
-                    }
-                );
-
-                // If An Open Accordion Was Found
-                if (openAccordion)
-                {
-                    // Close The Accordion
-                    openAccordion._toggleAccordionState();
-                }
+                // Close All Open Accordions
+                AccordionComponent._closeOtherOpenAccordions(this);
 
                 // Toggle The Accordion State
                 this._toggleAccordionState();
@@ -153,12 +146,41 @@ export default class AccordionComponent
         this._accordionBodyElement.textContent = this._bodyContent;
     }
 
+    // Close All Other Open Accordions
+    private static _closeOtherOpenAccordions(currentAccordion: AccordionComponent)
+    {
+        // Get All Other Accordions
+        const allOtherAccordions: Array<AccordionComponent> = AccordionComponent._allAccordions.filter(
+            accordion =>
+            {
+                return currentAccordion !== accordion;
+            }
+        );
+        
+        // Check For Any Other Open Accordion
+        const openAccordion: AccordionComponent | undefined = allOtherAccordions.find(
+            accordion =>
+            {
+                return accordion._accordionState === 'open';
+            }
+        );
+
+        // If An Open Accordion Was Found
+        if (openAccordion)
+        {
+            // Close The Accordion
+            openAccordion._toggleAccordionState();
+        }
+    }
+
     // Toggle The Accordion State
     private _toggleAccordionState()
     {
         // Declare New Accordion Data
         let newAccordionBodyHeight: number;
         let newAccordionState: AccordionStateType;
+        let newButtonIconSrc: string;
+        let newButtonIconAlt: string;
 
         // If Accordion Is Open
         if (this._accordionState === 'open')
@@ -166,6 +188,8 @@ export default class AccordionComponent
             // Close The Accordion
             newAccordionBodyHeight = 0;
             newAccordionState = 'closed';
+            newButtonIconSrc = '/images/icon-plus.svg'
+            newButtonIconAlt = 'Plus Icon';
         }
 
         // If Accordion Is Closed
@@ -174,10 +198,16 @@ export default class AccordionComponent
             // Open The Accordion
             newAccordionBodyHeight = this._accordionBodyElement.scrollHeight;
             newAccordionState = 'open';
+            newButtonIconSrc = '/images/icon-minus.svg'
+            newButtonIconAlt = 'Minus Icon';
         }
 
         // Updata The Current Accordion State
         this._accordionState = newAccordionState;
+        this._buttonIconSrc = newButtonIconSrc;
+        this._buttonIconAlt = newButtonIconAlt;
+        this._accordionButtonIconElement.src = newButtonIconSrc;
+        this._accordionButtonIconElement.alt = newButtonIconAlt;
         this._accordionBodyElement.style.height = `${newAccordionBodyHeight}px`;
         this._accordionElement.setAttribute('data-state', this._accordionState);
     }
