@@ -13,6 +13,7 @@ html {
 	font-family: var(--font-family-work-sans);
 	font-size: var(--font-size);
 	line-height: 150%;
+    animation: brighten 1s ease-in-out;
 }
 
 /* Body Reset - Mobile */
