@@ -40,12 +40,24 @@ export default class AccordionComponent
         this._headingTitle = props.headingTitle;
         this._bodyContent = props.bodyContent;
 
-        // Initialize Button Icon Content
-        this._buttonIconSrc = "images/icon-plus.svg";
-        this._buttonIconAlt = "Plus Icon";
-
         // Initialize Accordion State
-        this._accordionState = 'closed';
+        this._accordionState = props.defaultAccordionState || 'closed';
+
+        // If Accordion State Is Open
+        if (this._accordionState === 'open')
+        {
+            // Initialize Button Icon Content
+            this._buttonIconSrc = "images/icon-minus.svg";
+            this._buttonIconAlt = "Minus Icon";
+        }
+
+        // If Accordion State Is Closed
+        else
+        {
+            // Initialize Button Icon Content
+            this._buttonIconSrc = "images/icon-plus.svg";
+            this._buttonIconAlt = "Plus Icon";
+        }
 
         // Initialize the HTML Elements' Content
         this._init();
@@ -144,6 +156,26 @@ export default class AccordionComponent
     {
         // Insert The Body Content
         this._accordionBodyElement.textContent = this._bodyContent;
+
+        // If Accordion State Is Open
+        if (this._accordionState === 'open')
+        {
+            // Initialize The Accordion Body Height
+            setTimeout(
+                () =>
+                {
+                    this._accordionBodyElement.style.height = `${this._accordionBodyElement.scrollHeight}px`;
+                },
+                0
+            );
+        }
+
+        // If Accordion State Is Closed
+        else
+        {
+            // Initialize The Accordion Body Height
+            this._accordionBodyElement.style.height = `0px`;
+        }
     }
 
     // Close All Other Open Accordions

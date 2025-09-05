@@ -64,7 +64,6 @@
 .accordion p 
 {
     color: var(--secondary-color);
-    height: 0;
     overflow-y: hidden;
     transition: height 0.5s ease-in-out;
 }
