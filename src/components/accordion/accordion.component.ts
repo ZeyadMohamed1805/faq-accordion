@@ -124,6 +124,9 @@ export default class AccordionComponent
     // Initialize The According Button
     private _initAccordionButton()
     {
+        // Add The Button Type
+        this._accordionButtonElement.type = 'button';
+        
         // Insert The Button Icon Into The Button
         this._accordionButtonElement.appendChild(this._accordionButtonIconElement);
 
