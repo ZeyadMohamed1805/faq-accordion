@@ -71,10 +71,12 @@ export default class FAQComponent
     // Initialize The Accordion Container
     private _initAccordions(): void
     {
+        // Loop Over All Accordion Data
         ACCORDION_DATA.forEach
         (
             accordionData => 
             {
+                // Initialize The Accordion Components
                 const accordionComponent = new AccordionComponent(accordionData);
                 const accordionElement = accordionComponent.render();
                 this._accordionsElement.appendChild(accordionElement);

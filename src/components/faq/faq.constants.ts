@@ -1,3 +1,4 @@
+// Imports
 import type { AccordionDataType } from "./faq.types";
 
 // Accordion Constants
