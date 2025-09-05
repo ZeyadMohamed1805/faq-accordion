@@ -1,10 +1,13 @@
 // Imports
 import './accordion.styles.css';
-import type { AccordionPropsType } from "./accordion.types";
+import type { AccordionPropsType, AccordionStateType } from "./accordion.types";
 
 /** Accordion Component */
 export default class AccordionComponent 
 {
+    // All Accordion Instances
+    private static _allAccordions: Array<AccordionComponent> = [];
+
     // HTML Elements
     private _accordionElement: HTMLElement;
     private _accordionHeaderElement: HTMLElement;
@@ -18,6 +21,9 @@ export default class AccordionComponent
     private _bodyContent: string;
     private _buttonIconPath: string;
     private _buttonIconAlt: string;
+
+    // Accordion State
+    private _accordionState: AccordionStateType;
 
     // Constructor
     public constructor(props: AccordionPropsType) 
@@ -34,12 +40,18 @@ export default class AccordionComponent
         this._headingTitle = props.headingTitle;
         this._bodyContent = props.bodyContent;
 
-        // Initialize Button Icon Path
+        // Initialize Button Icon Content
         this._buttonIconPath = "/images/icon-plus.svg";
         this._buttonIconAlt = "Plus Icon";
 
+        // Initialize Accordion State
+        this._accordionState = 'closed';
+
         // Initialize the HTML Elements' Content
         this._init();
+
+        // Add Accordion Instance To All Accordions
+        AccordionComponent._allAccordions.push(this);
     }
 
     // Initialize All HTML Elements's Content
@@ -58,6 +70,9 @@ export default class AccordionComponent
     {
         // Add Class To The Accordion
         this._accordionElement.classList.add('accordion');
+
+        // Add Accordion State To Data Attribute
+        this._accordionElement.setAttribute('data-state', this._accordionState);
 
         // Insert The Accordion's Header & Body
         this._accordionElement.append(
@@ -86,6 +101,39 @@ export default class AccordionComponent
     {
         // Insert The Button Icon Into The Button
         this._accordionButtonElement.appendChild(this._accordionButtonIconElement);
+
+        // Add Toggle Functionality
+        this._accordionButtonElement.addEventListener(
+            "click",
+            () =>
+            {
+                // Get All Other Accordions
+                const allOtherAccordions: Array<AccordionComponent> = AccordionComponent._allAccordions.filter(
+                    accordion =>
+                    {
+                        return this !== accordion;
+                    }
+                );
+                
+                // Check For Any Other Open Accordion
+                const openAccordion: AccordionComponent | undefined = allOtherAccordions.find(
+                    accordion =>
+                    {
+                        return accordion._accordionState === 'open';
+                    }
+                );
+
+                // If An Open Accordion Was Found
+                if (openAccordion)
+                {
+                    // Close The Accordion
+                    openAccordion._toggleAccordionState();
+                }
+
+                // Toggle The Accordion State
+                this._toggleAccordionState();
+            }
+        )
     }
 
     // Initialize The Accordion Header
@@ -103,6 +151,35 @@ export default class AccordionComponent
     {
         // Insert The Body Content
         this._accordionBodyElement.textContent = this._bodyContent;
+    }
+
+    // Toggle The Accordion State
+    private _toggleAccordionState()
+    {
+        // Declare New Accordion Data
+        let newAccordionBodyHeight: number;
+        let newAccordionState: AccordionStateType;
+
+        // If Accordion Is Open
+        if (this._accordionState === 'open')
+        {
+            // Close The Accordion
+            newAccordionBodyHeight = 0;
+            newAccordionState = 'closed';
+        }
+
+        // If Accordion Is Closed
+        else
+        {
+            // Open The Accordion
+            newAccordionBodyHeight = this._accordionBodyElement.scrollHeight;
+            newAccordionState = 'open';
+        }
+
+        // Updata The Current Accordion State
+        this._accordionState = newAccordionState;
+        this._accordionBodyElement.style.height = `${newAccordionBodyHeight}px`;
+        this._accordionElement.setAttribute('data-state', this._accordionState);
     }
 
     // Render The Accordion
