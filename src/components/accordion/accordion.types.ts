@@ -8,5 +8,5 @@ export type AccordionPropsType =
 {
     headingTitle: string;
     bodyContent: string;
-    defaultAccordionState: AccordionStateType;
+    defaultAccordionState?: AccordionStateType;
 };
